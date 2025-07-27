@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 
+const { id } = useParams();
+
 const EditMovieForm = (props) => {
   const { setMovies } = props;
   const [movie, setMovie] = useState({
