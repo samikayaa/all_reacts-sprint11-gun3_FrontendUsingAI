@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 
-const { id } = useParams();
-
 const EditMovieForm = (props) => {
   const { setMovies } = props;
   const [movie, setMovie] = useState({
@@ -14,6 +12,15 @@ const EditMovieForm = (props) => {
     metascore: 0,
     description: '',
   });
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    axios
+      .get('https://nextgen-project.onrender.com/api/s11d3/movies/:id')
+      .then(response => setMovie(response.data))
+      .catch(error => console.log(error.response))
+  }, [])
 
   const handleChange = (e) => {
     setMovie({
